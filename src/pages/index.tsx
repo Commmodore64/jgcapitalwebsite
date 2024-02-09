@@ -23,7 +23,11 @@ export default function Home() {
       </Head>
       <Navbar>
         <NavbarBrand>
-          {/* <JGLogo /> */}
+          {/* <img
+            src="https://s3.amazonaws.com/assets.moveglobally.com/organization_files/54254/logo_jg_mejorado_-_Copy.png"
+            className=""
+            alt=""
+          /> */}
           <p className="font-semibold text-inherit">JGCapital</p>
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-24" justify="center">
@@ -34,12 +38,12 @@ export default function Home() {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#" className="font-thin">
-              Nosotros
+              Propiedades
             </Link>
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="#" className="font-thin">
-              Propiedades
+              Nosotros
             </Link>
           </NavbarItem>
           <NavbarItem>
