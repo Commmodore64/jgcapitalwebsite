@@ -1,7 +1,8 @@
+import { Divider } from "@nextui-org/react";
 import { FC, useEffect, useState } from "react";
 import { FaBath, FaBed, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
-
-// Utils
+import { Badge } from "../ui/badge";
+import { Button } from "../ui/button";
 import {
   Card,
   CardContent,
@@ -9,12 +10,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { IoIosArrowRoundForward } from "react-icons/io";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+} from "../ui/card";
 
-const Propiedades: FC = () => {
+const PropiedadesAll: FC = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -31,10 +29,6 @@ const Propiedades: FC = () => {
         // Convertir la respuesta a formato JSON
         const data = await response.json();
         setData(data);
-
-        // Utilizar los datos obtenidos
-        console.log(data.content[0]);
-        console.log(data.content[0].property_type);
       } catch (error) {
         console.error(error);
       }
@@ -42,16 +36,21 @@ const Propiedades: FC = () => {
 
     fetchData();
   }, []); // Ejecutar solo una vez al montar el componente
-
   return (
     <>
-      <div className="flex items-center justify-end mr-72 p-5">
-        <a href="/propiedades">Todas las propiedades</a>
-        <IoIosArrowRoundForward className="ml-1" />
+      <div className="m-12">
+        <h1 className="p-1.5 text-3xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none bg-clip-text text-transparent bg-gradient-to-l from-gray-400 to-black ml-20">
+          Propiedades
+        </h1>
+      </div>
+      <div className="flex justify-center">
+        <div className="w-10/12 px-1">
+          <Divider />
+        </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-4">
-        {data?.content.slice(0, 3).map((item: any, index: number) => (
+      <div className="flex flex-wrap justify-center gap-4 m-16">
+        {data?.content.map((item: any, index: number) => (
           <Card key={index} className="w-[350px] shadow-md">
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
@@ -84,21 +83,10 @@ const Propiedades: FC = () => {
             </CardContent>
             <CardFooter className="flex justify-between items-center p-4">
               <Button>
-                <a
-                  href={`https://wa.me/+526141636322?text=${encodeURIComponent(
-                    `¡Hola! Estoy interesado en la propiedad "${item.title}". ¿Podrías proporcionarme más información?`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FaWhatsapp className="w-5 h-6" />
-                </a>
+                <FaWhatsapp className="w-5 h-6" />
               </Button>
-
               <Button>
-                <a href="tel:+526141636322">
-                  <FaPhoneAlt className="w-5 h-6" />
-                </a>
+                <FaPhoneAlt className="w-5 h-6" />
               </Button>
             </CardFooter>
           </Card>
@@ -108,4 +96,4 @@ const Propiedades: FC = () => {
   );
 };
 
-export default Propiedades;
+export default PropiedadesAll;
