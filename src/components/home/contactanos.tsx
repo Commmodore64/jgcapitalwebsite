@@ -4,7 +4,7 @@ const contactanos: FC = ({}) => {
   return (
     <>
       <div className="relative h-full w-full bg-white">
-        <h1>Nosotros</h1>
+        <h1>Contactanos</h1>
       </div>
     </>
   );

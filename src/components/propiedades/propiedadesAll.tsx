@@ -1,6 +1,8 @@
 import { Divider } from "@nextui-org/react";
+import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { FaBath, FaBed, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import {
@@ -39,9 +41,12 @@ const PropiedadesAll: FC = () => {
   return (
     <>
       <div className="m-12">
-        <h1 className="p-1.5 text-3xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none bg-clip-text text-transparent bg-gradient-to-l from-gray-400 to-black ml-20">
+        <p className="p-1.5 text-3xl font-bold tracking-tighter sm:text-3xl xl:text-4xl/none bg-clip-text text-transparent bg-gradient-to-l from-gray-400 to-black ml-20">
           Propiedades
-        </h1>
+        </p>
+        <Link href="/">
+          <FaArrowLeftLong />
+        </Link>
       </div>
       <div className="flex justify-center">
         <div className="w-10/12 px-1">
