@@ -5,13 +5,13 @@ import type { FC } from "react";
 import Contactanos from "./contactanos";
 import Hero from "./hero";
 import Nosotros from "./nosotros";
-import PropertySearch from "./propiedadBusqueda";
+// import PropertySearch from "./propiedadBusqueda";
 import Propiedades from "./propiedades";
 
 const Index: FC = ({}) => {
   const componentsArray = [
     { id: "hero", component: <Hero /> },
-    { id: "propiedadBusqueda", component: <PropertySearch /> },
+    // { id: "propiedadBusqueda", component: <PropertySearch /> },
     { id: "propiedades", component: <Propiedades /> },
     { id: "nosotros", component: <Nosotros /> },
     { id: "contactanos", component: <Contactanos /> },
