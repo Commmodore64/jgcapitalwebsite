@@ -1,4 +1,3 @@
-// En el archivo /pages/api/contactRequests.js
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -15,22 +14,34 @@ export default async function handler(
       },
     };
 
-    // Realizar la solicitud a la API
-    const response = await fetch(
-      "https://api.easybroker.com/v1/properties?page=1&limit=20",
+    // Realizar la solicitud a la API para la página 1
+    const responsePage1 = await fetch(
+      "https://api.easybroker.com/v1/properties?page=1&limit=50",
       options
     );
 
-    // Verificar si la respuesta es exitosa
-    if (!response.ok) {
+    // Realizar la solicitud a la API para la página 2
+    const responsePage2 = await fetch(
+      "https://api.easybroker.com/v1/properties?page=2&limit=50",
+      options
+    );
+
+    // Verificar si alguna de las respuestas no es exitosa
+    if (!responsePage1.ok || !responsePage2.ok) {
       throw new Error("Error al obtener datos de la API");
     }
 
-    // Convertir la respuesta a formato JSON
-    const data = await response.json();
+    // Convertir las respuestas a formato JSON
+    const dataPage1 = await responsePage1.json();
+    const dataPage2 = await responsePage2.json();
 
-    // Devolver los datos obtenidos como respuesta de la API de Next.js
-    res.status(200).json(data);
+    // Combinar los datos de ambas páginas
+    const combinedData = {
+      content: [...dataPage1.content, ...dataPage2.content],
+    };
+
+    // Devolver los datos combinados como respuesta de la API de Next.js
+    res.status(200).json(combinedData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error interno del servidor" });

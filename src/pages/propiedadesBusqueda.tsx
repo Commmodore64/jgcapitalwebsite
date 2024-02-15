@@ -7,7 +7,7 @@ export default function PropiedadesBusqueda() {
   return (
     <>
       <Head>
-        <title>JG - Propiedades</title>
+        <title>JG - Busqueda Propiedades</title>
       </Head>
       <PropiedadesSearch />
     </>

@@ -124,8 +124,8 @@ function PropertySearch() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">Buscar Propiedades</h2>
+    <div className="max-w-3xl mx-auto mt-5">
+      <h2 className="text-2xl font-bold mb-4">Buscar Propiedades</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">
           <div className="flex-grow">
@@ -159,15 +159,13 @@ function PropertySearch() {
               <option value="Terreno">Terreno</option>
               <option value="Casa">Casa</option>
               <option value="Departamento">Departamento</option>
+              <option value="Bodega comercial">Bodega Comercial</option>
             </select>
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
+        <Button type="submit" className=" text-white px-4 py-2 ">
           Buscar
-        </button>
+        </Button>
       </form>
       {loading ? (
         <p>Cargando...</p>
@@ -176,7 +174,7 @@ function PropertySearch() {
         <PropertySearchResults properties={properties} />
       ) : (
         // Mostrar mensaje de no hay resultados si no hay propiedades
-        <p>
+        <p className="mt-3 font-semibold">
           No se encontraron propiedades que coincidan con los criterios de
           búsqueda.
         </p>

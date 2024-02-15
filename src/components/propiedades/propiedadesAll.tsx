@@ -1,4 +1,4 @@
-import { Divider } from "@nextui-org/react";
+import { Divider, Pagination } from "@nextui-org/react";
 import Link from "next/link";
 import { FC, useEffect, useState } from "react";
 import { FaBath, FaBed, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
@@ -16,6 +16,8 @@ import {
 
 const PropiedadesAll: FC = () => {
   const [data, setData] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 12; // Cambia este valor según el número deseado de propiedades por página
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,17 @@ const PropiedadesAll: FC = () => {
 
     fetchData();
   }, []); // Ejecutar solo una vez al montar el componente
+
+  const totalProperties = data?.content.length || 0;
+  const totalPages = Math.ceil(totalProperties / propertiesPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * propertiesPerPage;
+  const endIndex = currentPage * propertiesPerPage;
+
   return (
     <>
       <div className="m-12">
@@ -55,47 +68,57 @@ const PropiedadesAll: FC = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 m-16">
-        {data?.content.map((item: any, index: number) => (
-          <Card key={index} className="w-[350px] shadow-md">
-            <CardHeader>
-              <CardTitle>{item.title}</CardTitle>
-              <CardDescription>{item.location}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="h-48 overflow-hidden">
-                <img
-                  className="object-cover w-full h-full rounded-lg shadow-lg"
-                  src={item.title_image_full}
-                  alt="Foto propiedad"
-                />
-              </div>
-              <form className="flex flex-row p-2 items-center">
-                <div className="flex items-center mr-4">
-                  <FaBed className="w-5 h-4 mr-2" />
-                  <span>{item.bedrooms || 0}</span>
+        {data?.content
+          .slice(startIndex, endIndex)
+          .map((item: any, index: number) => (
+            <Card key={index} className="w-[350px] shadow-md">
+              <CardHeader>
+                <CardTitle>{item.title}</CardTitle>
+                <CardDescription>{item.location}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="h-48 overflow-hidden">
+                  <img
+                    className="object-cover w-full h-full rounded-lg shadow-lg"
+                    src={item.title_image_full}
+                    alt="Foto propiedad"
+                  />
                 </div>
-                <div className="flex items-center">
-                  <FaBath className="w-4 h-4 mr-2" />
-                  <span>{item.bathrooms || 0}</span>
-                  <span className="ml-2">
-                    Tipo: {item.property_type || "Desconocido"}
-                  </span>
-                </div>
-              </form>
-              <Badge className="mt-2 text-sm">
-                {item.operations[0].formatted_amount}
-              </Badge>
-            </CardContent>
-            <CardFooter className="flex justify-between items-center p-4">
-              <Button>
-                <FaWhatsapp className="w-5 h-6" />
-              </Button>
-              <Button>
-                <FaPhoneAlt className="w-5 h-6" />
-              </Button>
-            </CardFooter>
-          </Card>
-        ))}
+                <form className="flex flex-row p-2 items-center">
+                  <div className="flex items-center mr-4">
+                    <FaBed className="w-5 h-4 mr-2" />
+                    <span>{item.bedrooms || 0}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <FaBath className="w-4 h-4 mr-2" />
+                    <span>{item.bathrooms || 0}</span>
+                    <span className="ml-2">
+                      Tipo: {item.property_type || "Desconocido"}
+                    </span>
+                  </div>
+                </form>
+                <Badge className="mt-2 text-sm">
+                  {item.operations[0].formatted_amount}
+                </Badge>
+              </CardContent>
+              <CardFooter className="flex justify-between items-center p-4">
+                <Button>
+                  <FaWhatsapp className="w-5 h-6" />
+                </Button>
+                <Button>
+                  <FaPhoneAlt className="w-5 h-6" />
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+      </div>
+
+      <div className="flex justify-center mt-8">
+        <Pagination
+          total={totalPages}
+          initialPage={currentPage}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );
