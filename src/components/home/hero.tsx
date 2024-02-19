@@ -3,6 +3,7 @@ import { FC } from "react";
 //Utils
 import { Button } from "@/components/ui/button";
 import { Image } from "@nextui-org/react";
+import Link from "next/link";
 
 const stadistics = [
   {
@@ -36,7 +37,9 @@ const hero: FC = ({}) => {
                   Quieres encontrar un hogar? Estamos listos para ayudarte
                 </h2>
               </div>
-              <Button className="ml-10 mt-7 w-28">Inicia</Button>
+              <Button className="ml-10 mt-7 w-28">
+                <Link href="/propiedadesBusqueda">Inicia</Link>
+              </Button>
               <div className="flex h-0 mt-24 ml-12">
                 {stadistics.map((statistic, index) => (
                   <div key={index} className="flex flex-col mr-6">

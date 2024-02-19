@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -46,7 +47,7 @@ const Propiedades: FC = () => {
   return (
     <>
       <div className="flex items-center justify-end mr-72 p-5 font-semibold">
-        <a href="/propiedades">Todas las propiedades</a>
+        <Link href="/propiedades">Todas las propiedades</Link>
         <IoIosArrowRoundForward className="ml-1" />
       </div>
 
@@ -103,6 +104,12 @@ const Propiedades: FC = () => {
             </CardFooter>
           </Card>
         ))}
+      </div>
+      <div className="flex flex-col justify-center items-center my-10">
+        <p className=" font-bold text-3xl">¿Buscas algo más específico?</p>
+        <Button className="ml-10 mt-7 w-52 text-md">
+          <Link href="/propiedadesBusqueda">Busqueda Personalizada</Link>
+        </Button>
       </div>
     </>
   );

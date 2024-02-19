@@ -17,20 +17,17 @@ import {
 const PropiedadesAll: FC = () => {
   const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const propertiesPerPage = 12; // Cambia este valor según el número deseado de propiedades por página
+  const propertiesPerPage = 12;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Realizar la solicitud a la API de tu proyecto Next.js
         const response = await fetch("/api/propiedadesApi");
 
-        // Verificar si la respuesta es exitosa
         if (!response.ok) {
           throw new Error("Error al obtener datos de la API");
         }
 
-        // Convertir la respuesta a formato JSON
         const data = await response.json();
         setData(data);
       } catch (error) {
@@ -39,13 +36,14 @@ const PropiedadesAll: FC = () => {
     };
 
     fetchData();
-  }, []); // Ejecutar solo una vez al montar el componente
+  }, []);
 
   const totalProperties = data?.content.length || 0;
   const totalPages = Math.ceil(totalProperties / propertiesPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Desplazamiento hacia arriba con animación suave
   };
 
   const startIndex = (currentPage - 1) * propertiesPerPage;
@@ -103,10 +101,20 @@ const PropiedadesAll: FC = () => {
               </CardContent>
               <CardFooter className="flex justify-between items-center p-4">
                 <Button>
-                  <FaWhatsapp className="w-5 h-6" />
+                  <a
+                    href={`https://wa.me/+526141636322?text=${encodeURIComponent(
+                      `¡Hola! Estoy interesado en la propiedad "${item.title}". ¿Podrías proporcionarme más información?`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaWhatsapp className="w-5 h-6" />
+                  </a>
                 </Button>
                 <Button>
-                  <FaPhoneAlt className="w-5 h-6" />
+                  <a href="tel:+526141636322">
+                    <FaPhoneAlt className="w-5 h-6" />
+                  </a>
                 </Button>
               </CardFooter>
             </Card>
@@ -115,6 +123,7 @@ const PropiedadesAll: FC = () => {
 
       <div className="flex justify-center mt-8">
         <Pagination
+          className="mb-8"
           total={totalPages}
           initialPage={currentPage}
           onChange={handlePageChange}
