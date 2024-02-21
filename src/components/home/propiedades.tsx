@@ -107,7 +107,7 @@ const Propiedades: FC = () => {
       </div>
       <div className="flex flex-col justify-center items-center my-10">
         <p className=" font-bold text-3xl">¿Buscas algo más específico?</p>
-        <Button className="ml-10 mt-7 w-52 text-md">
+        <Button className=" mt-7 w-52 text-md">
           <Link href="/propiedadesBusqueda">Busqueda Personalizada</Link>
         </Button>
       </div>

@@ -23,12 +23,8 @@ export default function Home() {
       </Head>
       <Navbar>
         <NavbarBrand>
-          {/* <img
-            src="https://s3.amazonaws.com/assets.moveglobally.com/organization_files/54254/logo_jg_mejorado_-_Copy.png"
-            className=""
-            alt=""
-          /> */}
-          <p className="font-semibold text-inherit">JGCapital</p>
+          <img src="/img/jglogo.svg" className="h-44 mt-8" alt="jglogo" />
+          {/* <p className="font-semibold text-inherit">JGCapital</p> */}
         </NavbarBrand>
         <NavbarContent className="hidden sm:flex gap-24" justify="center">
           <NavbarItem>

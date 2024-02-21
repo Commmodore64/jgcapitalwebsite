@@ -25,9 +25,8 @@ const hero: FC = ({}) => {
     <>
       <div className="relative h-full w-full bg-white">
         <div className="absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
-
-        <div className="relative isolate pt-14">
-          <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+        <div className="relative isolate ">
+          <div className="mx-auto max-w-7xl px-6 py-20 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-20">
             <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto flex flex-col justify-center">
               <div className="flex flex-col ml-8">
                 <h1 className="p-1.5 text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none bg-clip-text text-transparent bg-gradient-to-l from-gray-400 to-black">
@@ -49,12 +48,7 @@ const hero: FC = ({}) => {
                 ))}
               </div>
             </div>
-            <Image
-              isBlurred
-              width={900}
-              src="https://www.glazz.co.uk/wp-content/uploads/2018/09/Amazing-Modern-House-Designs-HD-Wallpaper.jpg"
-              alt="NextUI Album Cover"
-            />
+            <Image isBlurred width={1000} src="/img/jglogo.svg" alt="jglogo" />
           </div>
         </div>
       </div>
