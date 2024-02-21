@@ -16,7 +16,7 @@ import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 
 const Propiedades: FC = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,12 +30,12 @@ const Propiedades: FC = () => {
         }
 
         // Convertir la respuesta a formato JSON
-        const data = await response.json();
-        setData(data);
+        const responseData = await response.json();
+        setData(responseData?.content || []);
 
         // Utilizar los datos obtenidos
-        console.log(data.content[0]);
-        console.log(data.content[0].property_type);
+        console.log(responseData?.content[0]);
+        console.log(responseData?.content[0]?.property_type);
       } catch (error) {
         console.error(error);
       }
@@ -52,7 +52,7 @@ const Propiedades: FC = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4">
-        {data?.content.slice(0, 3).map((item: any, index: number) => (
+        {data.slice(0, 3).map((item: any, index: number) => (
           <Card key={index} className="w-[350px] shadow-md">
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
@@ -80,7 +80,7 @@ const Propiedades: FC = () => {
                 </div>
               </form>
               <Badge className="mt-2 text-sm">
-                {item.operations[0].formatted_amount}
+                {item.operations[0]?.formatted_amount}
               </Badge>
             </CardContent>
             <CardFooter className="flex justify-between items-center p-4">
