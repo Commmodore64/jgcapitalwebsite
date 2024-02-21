@@ -13,9 +13,20 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
+interface PropertyData {
+  content: {
+    title: string;
+    location: string;
+    title_image_full: string;
+    bedrooms: number;
+    bathrooms: number;
+    property_type: string;
+    operations: { formatted_amount: string }[];
+  }[];
+}
 
 const PropiedadesAll: FC = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<PropertyData | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const propertiesPerPage = 12;
 

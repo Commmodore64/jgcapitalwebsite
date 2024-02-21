@@ -11,7 +11,17 @@ import {
   CardTitle,
 } from "../ui/card";
 
-function PropertySearchResults({ properties }: { properties: Array<object> }) {
+interface Property {
+  title: string;
+  location: string;
+  title_image_full: string;
+  bedrooms: number;
+  bathrooms: number;
+  property_type: string;
+  operations: { type: string; formatted_amount: string }[];
+}
+
+function PropertySearchResults({ properties }: { properties: Property[] }) {
   return (
     <div className="flex flex-wrap justify-center gap-4 mt-12">
       {properties.map((item, index) => (
@@ -42,7 +52,7 @@ function PropertySearchResults({ properties }: { properties: Array<object> }) {
               </div>
             </form>
             <Badge className="mt-2 text-sm">
-              {item.operations[0].formatted_amount}
+              {item.operations[0]?.formatted_amount}
             </Badge>
           </CardContent>
           <CardFooter className="flex justify-between items-center p-4">
@@ -75,7 +85,7 @@ function PropertySearch() {
     ventaRenta: "", // Opciones: 'sale', 'rental', ''
     type: "", // Opciones: 'Terreno', 'Casa', 'Departamento', ''
   });
-  const [properties, setProperties] = useState([]);
+  const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -94,7 +104,7 @@ function PropertySearch() {
       }
       const data = await response.json();
       // Filtrar las propiedades según los criterios de búsqueda
-      const filteredProperties = data.content.filter((property) => {
+      const filteredProperties = data.content.filter((property: Property) => {
         // Verificar si la propiedad coincide con los criterios de búsqueda
         const ventaRentaMatch =
           searchCriteria.ventaRenta === "" ||
@@ -114,11 +124,11 @@ function PropertySearch() {
     }
   };
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSearchCriteria({ ...searchCriteria, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetchData();
   };
