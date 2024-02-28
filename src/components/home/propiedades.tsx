@@ -151,8 +151,8 @@ const Propiedades: FC = () => {
                     <DialogHeader>
                       <DialogTitle className="m-3">{item.title}</DialogTitle>
                       <p className="m-3 text-gray-500">
-                        {propertyDetails.property_type} en{" "}
-                        {propertyDetails.location.name}
+                        {propertyDetails?.property_type} en{" "}
+                        {propertyDetails?.location?.name}
                       </p>
                       {propertyDetails && (
                         <Carousel className="w-full max-w-lg">
@@ -178,29 +178,29 @@ const Propiedades: FC = () => {
                       <div className="flex flex-row">
                         <div className="flex items-center mr-4">
                           <FaBed className="w-5 h-4 mr-2" />
-                          <span>{propertyDetails.bedrooms || 0}</span>
+                          <span>{propertyDetails?.bedrooms || 0}</span>
                         </div>
                         <div className="flex items-center">
                           <FaBath className="w-4 h-4 mr-2" />
-                          <span>{propertyDetails.bathrooms || 0}</span>
+                          <span>{propertyDetails?.bathrooms || 0}</span>
                         </div>
                       </div>
                       <div className="flex items-center mr-4">
                         <TbResize className="w-5 h-4 mr-2" />
                         <span>
-                          {propertyDetails.lot_size?.toLocaleString() || 0} m²
+                          {propertyDetails?.lot_size?.toLocaleString() || 0} m²
                           de Terreno
                         </span>
                       </div>
                       <div className="flex items-center mr-4">
                         <RxRulerHorizontal className="w-5 h-4 mr-2" />
                         <span>
-                          {propertyDetails.lot_width?.toLocaleString() || 0} m
+                          {propertyDetails?.lot_width?.toLocaleString() || 0} m
                         </span>
                         <div className="flex items-center mr-4">
                           <RxRulerHorizontal className="w-5 h-4 mx-2 transform rotate-90" />
                           <span>
-                            {propertyDetails.lot_length?.toLocaleString() || 0}{" "}
+                            {propertyDetails?.lot_length?.toLocaleString() || 0}{" "}
                             m
                           </span>
                         </div>
@@ -211,7 +211,7 @@ const Propiedades: FC = () => {
                           <p className="font-bold text-base text-gray-800 py-2">
                             Descripción
                           </p>
-                          {propertyDetails.description}
+                          {propertyDetails?.description}
                         </DialogDescription>
                       )}
                     </DialogHeader>
