@@ -1,4 +1,4 @@
-import { useForm, ValidationError } from "@formspree/react";
+import { ValidationError, useForm } from "@formspree/react";
 import { Card, Input } from "@nextui-org/react";
 import { FC } from "react";
 import { Button } from "../ui/button";

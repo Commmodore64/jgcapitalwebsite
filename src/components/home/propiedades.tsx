@@ -1,5 +1,14 @@
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { FC, useEffect, useState } from "react";
 import { FaBath, FaBed, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import { IoIosMore } from "react-icons/io";
 
 // Utils
 import {
@@ -17,7 +26,26 @@ import { Button } from "../ui/button";
 
 const Propiedades: FC = () => {
   const [data, setData] = useState<any[]>([]);
+  const [propertyDetails, setPropertyDetails] = useState<any | null>(null);
 
+  const fetchPropertyDetails = async (publicId: string) => {
+    try {
+      const response = await fetch(`/api/propiedadesDetails/${publicId}`);
+      console.log(response);
+      if (!response.ok) {
+        throw new Error("Error al obtener detalles de la propiedad");
+      }
+      const propertyDetails = await response.json();
+      console.log(propertyDetails); // Agrega este log para verificar los detalles de la propiedad
+      setPropertyDetails(propertyDetails);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDetailsClick = (publicId: string) => {
+    fetchPropertyDetails(publicId);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -34,8 +62,9 @@ const Propiedades: FC = () => {
         setData(responseData?.content || []);
 
         // Utilizar los datos obtenidos
+        console.log(responseData);
         console.log(responseData?.content[0]);
-        console.log(responseData?.content[0]?.property_type);
+        console.log(responseData?.content[0]?.public_id);
       } catch (error) {
         console.error(error);
       }
@@ -53,7 +82,7 @@ const Propiedades: FC = () => {
 
       <div className="flex flex-wrap justify-center gap-4">
         {data.slice(0, 3).map((item: any, index: number) => (
-          <Card key={index} className="w-[350px] shadow-md">
+          <Card key={index} className="w-[350px] shadow-md relative pb-14">
             <CardHeader>
               <CardTitle>{item.title}</CardTitle>
               <CardDescription>{item.location}</CardDescription>
@@ -83,7 +112,7 @@ const Propiedades: FC = () => {
                 {item.operations[0]?.formatted_amount}
               </Badge>
             </CardContent>
-            <CardFooter className="flex justify-between items-center p-4">
+            <CardFooter className="absolute bottom-0 left-0 right-0 flex justify-between items-center p-4">
               <Button>
                 <a
                   href={`https://wa.me/+526141636322?text=${encodeURIComponent(
@@ -100,6 +129,25 @@ const Propiedades: FC = () => {
                 <a href="tel:+526141636322">
                   <FaPhoneAlt className="w-5 h-6" />
                 </a>
+              </Button>
+              <Button>
+                <Dialog>
+                  <DialogTrigger
+                    onClick={() => handleDetailsClick(item.public_id)}
+                  >
+                    <IoIosMore />
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle className="m-3">{item.title}</DialogTitle>
+                      {propertyDetails && (
+                        <DialogDescription>
+                          {propertyDetails.description}
+                        </DialogDescription>
+                      )}
+                    </DialogHeader>
+                  </DialogContent>
+                </Dialog>
               </Button>
             </CardFooter>
           </Card>

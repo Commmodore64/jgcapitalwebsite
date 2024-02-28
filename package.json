@@ -1,4 +1,9 @@
 {
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "name": "jgcapitalwebsite",
   "version": "0.1.0",
   "private": true,
@@ -11,17 +16,20 @@
   "dependencies": {
     "@formspree/react": "^2.5.1",
     "@nextui-org/react": "^2.2.9",
+    "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "framer-motion": "^11.0.3",
+    "framer-motion": "^11.0.5",
+    "fs": "^0.0.1-security",
     "lucide-react": "^0.323.0",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-use": "^17.5.0",
+    "simplex-noise": "^4.0.1",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },
