@@ -85,7 +85,7 @@ const Propiedades: FC = () => {
 
   return (
     <>
-      <div className="flex items-center justify-end mr-72 p-5 font-semibold">
+      <div className="flex items-center justify-end lg:mr-72 p-5 font-semibold ">
         <Link href="/propiedades">Todas las propiedades</Link>
         <IoIosArrowRoundForward className="ml-1" />
       </div>

@@ -134,7 +134,7 @@ function PropertySearch() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-5">
+    <div className="max-w-3xl mx-8 xl:mx-auto mt-5">
       <h2 className="text-2xl font-bold mb-4">Buscar Propiedades</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4">

@@ -5,7 +5,7 @@ const nosotros: FC = ({}) => {
   return (
     <>
       <div className="flex justify-center items-center h-full w-full bg-white my-8">
-        <Card className="w-[750px] bg-white text-[#101010]">
+        <Card className="w-[750px] bg-white text-[#101010] mx-7">
           <CardHeader className="flex gap-3">
             <div className="flex flex-col">
               <p className="text-xl font-bold">¿Quiénes somos?</p>
